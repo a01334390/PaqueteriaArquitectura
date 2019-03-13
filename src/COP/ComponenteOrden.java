@@ -6,7 +6,7 @@ import java.util.List;
 import BUI.Envio;
 
 public abstract class ComponenteOrden {
-Envio envio;
+	Envio envio;
 	
 	List<ComponenteOrden> componentesOrden = new ArrayList<>();
 
@@ -19,6 +19,7 @@ Envio envio;
 	}
 	
 	public abstract String toString();
+	public abstract double getFinalCost();
 	
 	String print(ComponenteOrden componenteOrden) {
 		return envio.toString();

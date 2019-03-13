@@ -30,4 +30,13 @@ public class Orden extends ComponenteOrden {
 		return builder.toString();
 	}
 
+	@Override
+	public double getFinalCost() {
+		double fincost = 0;
+		for(ComponenteOrden componenteOrden : componentesOrden) {
+			fincost+= componenteOrden.getFinalCost();
+		}
+		return fincost;
+	}
+
 }

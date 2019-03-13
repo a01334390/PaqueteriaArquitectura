@@ -14,9 +14,26 @@ public class Main {
 		ee.setSuccessor(be);
 		be.setSuccessor(pg);
 		
+		Request request0 = new Request(RequestType.PACHUCA, "CDMX", "0624",500,cliente,Tipo.DOCUMENTO);
+		Envio en0 = ee.handleRequest(request0);
+		
 		Request request = new Request(RequestType.PACHUCA, "CDMX", "0624",500,cliente,Tipo.CAJA);
-		Envio en = ee.handleRequest(request);
-		System.out.println(en);
+		ElementoOrden en1 = new ElementoOrden(ee.handleRequest(request));
+		
+		Request request2 = new Request(RequestType.YUCATAN, "CDMX", "0624",1273,cliente,Tipo.DOCUMENTO);
+		ElementoOrden en2 = new ElementoOrden(ee.handleRequest(request2));
+		
+		Request request3 = new Request(RequestType.SONORA, "CDMX", "0624",12937,cliente,Tipo.CAJA);
+		ElementoOrden en3 = new ElementoOrden(ee.handleRequest(request3));
+		
+		Orden orden = new Orden(en0);
+		orden.add(en1);
+		orden.add(en2);
+		orden.add(en3);
+		
+		System.out.println(orden.toString());
+		System.out.println(orden.getFinalCost());
+		
 		
 		//Test ClienteCreation
 

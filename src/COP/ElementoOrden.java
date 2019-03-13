@@ -12,5 +12,10 @@ public class ElementoOrden extends ComponenteOrden {
 	public String toString() {
 		return print(this);
 	}
+
+	@Override
+	public double getFinalCost() {
+		return this.envio.getCosto();
+	}
 	
 }
