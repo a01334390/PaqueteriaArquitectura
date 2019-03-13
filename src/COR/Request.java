@@ -3,7 +3,7 @@ package COR;
 public class Request {
 	private RequestType requestType;
 	
-	public Request(RequestType requestType, double amount) {
+	public Request(RequestType requestType) {
 		this.requestType = requestType;
 	}
 	
