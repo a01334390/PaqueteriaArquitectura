@@ -22,6 +22,7 @@ public class Orden extends ComponenteOrden {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append(print(this));
+		builder.append("\n");
 		
 		for(ComponenteOrden componenteOrden : componentesOrden) {
 			builder.append(componenteOrden.toString());
