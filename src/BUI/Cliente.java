@@ -1,4 +1,4 @@
-package STT;
+package BUI;
 
 public class Cliente {
 	private final String rfc;

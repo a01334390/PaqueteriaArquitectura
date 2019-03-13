@@ -1,5 +1,6 @@
+import BUI.*;
+import COP.*;
 import COR.*;
-import STT.*;
 
 public class Main {
 
@@ -18,11 +19,29 @@ public class Main {
 		Cliente cliente = new Cliente.Builder("123").build();
 		
 		// Test EnvioCreation
-		Envio envio = new Envio.Builder(RequestType.PACHUCA,"CDMX")
+		Envio envio1 = new Envio.Builder(RequestType.YUCATAN,"CDMX")
+				.withCodigoPostal("06234")
+				.withPeso(4553)
+				.withCliente(cliente).build();
+		
+		Envio envio2 = new Envio.Builder(RequestType.PACHUCA,"CDMX")
 				.withCodigoPostal("09890")
 				.withPeso(235.9)
 				.withCliente(cliente).build();
 		
-		System.out.println(envio);
+		Envio envio3 = new Envio.Builder(RequestType.SONORA,"CDMX")
+				.withCodigoPostal("21334")
+				.withPeso(400.9)
+				.withCliente(cliente).build();
+		
+		// TEST COR
+		Orden orden = new Orden(envio1);
+		ElementoOrden eo1 = new ElementoOrden(envio2);
+		orden.add(eo1);
+		ElementoOrden eo2 = new ElementoOrden(envio3);
+		orden.add(eo2);
+		
+		System.out.println(orden.toString());
+		
 	}
 }

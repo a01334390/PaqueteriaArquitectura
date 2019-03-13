@@ -1,4 +1,4 @@
-package STT;
+package BUI;
 
 import java.util.UUID;
 import COR.RequestType;
