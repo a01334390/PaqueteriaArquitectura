@@ -10,6 +10,8 @@ public class Envio {
 	private final String codigoPostal;
 	private final double peso;
 	private final Cliente rfcCliente;
+	private final double costo;
+	private final Tipo tipo;
 	
 	private Envio(Builder builder) {
 		this.id = builder.id;
@@ -18,6 +20,8 @@ public class Envio {
 		this.codigoPostal = builder.codigoPostal;
 		this.peso = builder.peso;
 		this.rfcCliente = builder.rfcCliente;
+		this.costo = builder.costo;
+		this.tipo = builder.tipo;
 	}
 
 	public UUID getId() {
@@ -44,8 +48,16 @@ public class Envio {
 		return rfcCliente;
 	}
 	
+	public double getCosto() {
+		return costo;
+	}
+	
+	public Tipo getTipo() {
+		return tipo;
+	}
+	
 	@Override public String toString() {
-		return "(envio (cliente "+rfcCliente+"(peso "+peso+"(codigoPostal "+codigoPostal+"(direccionRemitente "+direccionRemitente+"(direccionEntrega "+direccionEntrega+"(id "+id+")))))))";
+		return "(envio (tipo "+tipo+"(costo "+costo+"(cliente "+rfcCliente+"(peso "+peso+"(codigoPostal "+codigoPostal+"(direccionRemitente "+direccionRemitente+"(direccionEntrega "+direccionEntrega+"(id "+id+")))))))";
 		
 	}
 	
@@ -56,6 +68,8 @@ public class Envio {
 		private String codigoPostal;
 		private double peso;
 		private Cliente rfcCliente;
+		private double costo;
+		private Tipo tipo;
 		
 		public Builder(RequestType direccionEntrega, String direccionRemitente) {
 			this.id = UUID.randomUUID();
@@ -75,6 +89,16 @@ public class Envio {
 		
 		public Builder withCliente(Cliente rfcCliente) {
 			this.rfcCliente = rfcCliente;
+			return this;
+		}
+		
+		public Builder withCosto(double costo) {
+			this.costo = costo;
+			return this;
+		}
+		
+		public Builder withTipo(Tipo tipo) {
+			this.tipo = tipo;
 			return this;
 		}
 		

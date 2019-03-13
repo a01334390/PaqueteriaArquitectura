@@ -1,4 +1,5 @@
 package COR;
+import BUI.Envio;
 
 public abstract class Handler {
 	protected Handler successor;
@@ -7,5 +8,5 @@ public abstract class Handler {
 		this.successor = successor;
 	}
 	
-	abstract void handleRequest(Request request);
+	abstract Envio handleRequest(Request request);
 }
