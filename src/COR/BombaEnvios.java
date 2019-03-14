@@ -30,7 +30,11 @@ public class BombaEnvios extends Handler {
 				 	.withCodigoPostal(request.getCodigoPostal())
 					.withCosto(costoFinal)
 					.withPeso(request.getPeso())
-					.withTipo(request.getTipo()).build();
+					.withTipo(request.getTipo())
+					.esEntregaNoAtendida(request.isEsEntregaNoAtendida())
+					.esFirmaContraEntrega(request.isEsFirmaContraEntrega())
+					.esFragil(request.isEsFirmaContraEntrega())
+					.build();
 		} else {
 			return successor.handleRequest(request);
 		}

@@ -35,16 +35,19 @@ public class PaqueteriaFacade {
 	}
 	
 	/**
-	 * Genera un envio a una direccion y lo añade a la orden
+	 * Genera un envio a una direccion y lo añade a la orden (con tags)
 	 * @param direccionEnvio Direccion de envio, 0 -> Envio express  1 -> BombaEnvios  2 -> PastesGo
 	 * @param direccionRemitente Direccion del remitente en una oracion
 	 * @param codigoPostal Codigo Postal de 5 digitos
 	 * @param peso Peso en gramos
 	 * @param tipo Documento o Caja
+	 * @param esFragil
+	 * @param esFirmaContraEntrega
+	 * @param esEntregaNoAtendida
 	 */
 	
-	public void añadirEnvio(int direccionEnvio, String direccionRemitente, String codigoPostal, double peso, int tipo ) {
-		Request request = new Request(RequestType.values()[direccionEnvio-1], direccionRemitente, codigoPostal,peso,this.cliente,Tipo.values()[tipo-1]);
+	public void añadirEnvio(int direccionEnvio, String direccionRemitente, String codigoPostal, double peso, int tipo, boolean esFragil, boolean esFirmaContraEntrega, boolean esEntregaNoAtendida) {
+		Request request = new Request(RequestType.values()[direccionEnvio-1], direccionRemitente, codigoPostal,peso,this.cliente,Tipo.values()[tipo-1],esFragil,esFirmaContraEntrega,esEntregaNoAtendida);
 		ElementoOrden en = new ElementoOrden(ee.handleRequest(request));
 		orden.add(en);
 	}

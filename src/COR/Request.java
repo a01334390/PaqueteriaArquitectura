@@ -10,17 +10,23 @@ public class Request {
 	private double peso;
 	private Cliente rfcCliente;
 	private Tipo tipo;
+	private boolean esFragil = false;
+	private boolean esFirmaContraEntrega = false;
+	private boolean esEntregaNoAtendida = false;
 	
 	public Request(RequestType requestType, String direccionRemitente, String codigoPostal, double peso,
-			Cliente rfcCliente, Tipo tipo) {
+			Cliente rfcCliente, Tipo tipo, boolean esFragil, boolean esFirmaContraEntrega, boolean esEntregaNoAtendida) {
 		this.requestType = requestType;
 		this.direccionRemitente = direccionRemitente;
 		this.codigoPostal = codigoPostal;
 		this.peso = peso;
 		this.rfcCliente = rfcCliente;
 		this.tipo = tipo;
+		this.esFragil = esFragil;
+		this.esFirmaContraEntrega = esFirmaContraEntrega;
+		this.esEntregaNoAtendida = esEntregaNoAtendida;
 	}
-
+	
 	public RequestType getRequestType() {
 		return requestType;
 	}
@@ -43,6 +49,18 @@ public class Request {
 	
 	public Tipo getTipo() {
 		return tipo;
+	}
+
+	public boolean isEsFragil() {
+		return esFragil;
+	}
+
+	public boolean isEsFirmaContraEntrega() {
+		return esFirmaContraEntrega;
+	}
+
+	public boolean isEsEntregaNoAtendida() {
+		return esEntregaNoAtendida;
 	}
 	
 	

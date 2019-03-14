@@ -12,6 +12,9 @@ public class Envio {
 	private final Cliente rfcCliente;
 	private final double costo;
 	private final Tipo tipo;
+	private final boolean esFragil;
+	private final boolean esFirmaContraEntrega;
+	private final boolean esEntregaNoAtendida;
 	
 	private Envio(Builder builder) {
 		this.id = builder.id;
@@ -22,6 +25,9 @@ public class Envio {
 		this.rfcCliente = builder.rfcCliente;
 		this.costo = builder.costo;
 		this.tipo = builder.tipo;
+		this.esFragil = builder.esFragil;
+		this.esFirmaContraEntrega = builder.esFirmaContraEntrega;
+		this.esEntregaNoAtendida = builder.esEntregaNoAtendida;
 	}
 
 	public UUID getId() {
@@ -56,8 +62,30 @@ public class Envio {
 		return tipo;
 	}
 	
+	public boolean esFragil() {
+		return esFragil;
+	}
+
+	public boolean esFirmaContraEntrega() {
+		return esFirmaContraEntrega;
+	}
+
+	public boolean esEntregaNoAtendida() {
+		return esEntregaNoAtendida;
+	}
+
 	@Override public String toString() {
-		return "(envio (tipo "+tipo+"(costo "+costo+"(cliente "+rfcCliente+"(peso "+peso+"(codigoPostal "+codigoPostal+"(direccionRemitente "+direccionRemitente+"(direccionEntrega "+direccionEntrega+"(id "+id+")))))))";
+		return "{Envio: "+id+"\n"
+				+ "\tDireccion de Entrega: "+direccionEntrega+"\n"
+			    + "\tCodigo Postal: "+codigoPostal+"\n"
+			    + "\tPeso: "+peso+"\n"
+			    + "\tRFC: "+rfcCliente.toString()+"\n"
+			    + "\tCosto:"+costo+"\n"
+			    + "\tTipo: "+tipo+"\n"
+			    + "\tesFragil?: "+esFragil+"\n"
+			    + "\tSe firma contra entrega?: "+esFirmaContraEntrega+"\n"
+			    + "\tSe puede entregar sin firma?: "+esEntregaNoAtendida+"}";
+				
 		
 	}
 	
@@ -70,6 +98,9 @@ public class Envio {
 		private Cliente rfcCliente;
 		private double costo;
 		private Tipo tipo;
+		private boolean esFragil = false;
+		private boolean esFirmaContraEntrega = false;
+		private boolean esEntregaNoAtendida = false;
 		
 		public Builder(RequestType direccionEntrega, String direccionRemitente) {
 			this.id = UUID.randomUUID();
@@ -99,6 +130,21 @@ public class Envio {
 		
 		public Builder withTipo(Tipo tipo) {
 			this.tipo = tipo;
+			return this;
+		}
+		
+		public Builder esFragil(boolean e) {
+			this.esFragil = true;
+			return this;
+		}
+		
+		public Builder esFirmaContraEntrega(boolean e) {
+			this.esFirmaContraEntrega = true;
+			return this;
+		}
+		
+		public Builder esEntregaNoAtendida(boolean e) {
+			this.esEntregaNoAtendida = e;
 			return this;
 		}
 		
