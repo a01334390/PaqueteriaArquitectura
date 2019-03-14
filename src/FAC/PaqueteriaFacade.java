@@ -44,7 +44,7 @@ public class PaqueteriaFacade {
 	 */
 	
 	public void añadirEnvio(int direccionEnvio, String direccionRemitente, String codigoPostal, double peso, int tipo ) {
-		Request request = new Request(RequestType.values()[direccionEnvio-1], "CDMX", "0624",500,this.cliente,Tipo.values()[tipo-1]);
+		Request request = new Request(RequestType.values()[direccionEnvio-1], direccionRemitente, codigoPostal,peso,this.cliente,Tipo.values()[tipo-1]);
 		ElementoOrden en = new ElementoOrden(ee.handleRequest(request));
 		orden.add(en);
 	}

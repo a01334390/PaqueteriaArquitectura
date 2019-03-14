@@ -24,6 +24,12 @@ public class PastesGo extends Handler{
 				System.exit(1);
 			}
 			
+			//Manejar sobrecostos
+			if(request.getPeso() > 5000) {
+				int sobreUnidad = (int) Math.round((request.getPeso() - 5000)/250);
+				costoFinal += sobreUnidad * 600;
+			}
+			
 			// Crear un objeto Envio y regresar
 			return new Envio.Builder(request.getRequestType(), request.getDireccionRemitente())
 					.withCliente(request.getRfcCliente())

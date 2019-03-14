@@ -14,7 +14,8 @@ public class Main {
 		System.out.println(fac.verEnvios());
 		fac.removerEnvio(envios.get(0).getId());
 		System.out.println(fac.verEnvios());
-		fac.añadirEnvio(1, "CDMX", "09890", 29849, 1);
+		fac.añadirEnvio(1, "CDMX", "09890", 50000, 1);
 		System.out.println(fac.verEnvios());
+		System.out.println(fac.verCostoFinal());
 	}
 }
