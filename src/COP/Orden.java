@@ -1,13 +1,19 @@
 package COP;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.UUID;
 
 import BUI.Envio;
+import BUI.Reservacion;
+import ITE.RepositorioReservaciones;
 
 public class Orden extends ComponenteOrden {
 	
-	public Orden() {
+	RepositorioReservaciones rr;
+	
+	public Orden(RepositorioReservaciones rr) {
+		this.rr = rr;
 		this.envio = null;
 	}
 	
@@ -57,6 +63,18 @@ public class Orden extends ComponenteOrden {
 			fincost+= componenteOrden.getFinalCost();
 		}
 		return fincost;
+	}
+	
+	public void realizarEnvios() {
+		for(ComponenteOrden componenteOrden : componentesOrden) {
+			rr.addReservacion(componenteOrden.getEnvio());
+		}
+		
+		Iterator<Reservacion> reservacionIterator = rr.iterator();
+		while(reservacionIterator.hasNext()) {
+			Reservacion act = reservacionIterator.next();
+			System.out.println("El envio: "+act.getEnvio().getId()+", sera enviado el dia: "+act.getFecha().toString());
+		}
 	}
 
 }

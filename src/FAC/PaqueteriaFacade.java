@@ -8,6 +8,7 @@ import java.util.UUID;
 import BUI.*;
 import COR.*;
 import FAC.*;
+import ITE.RepositorioReservaciones;
 
 /**
  * Fachada para la paqueteria
@@ -19,15 +20,18 @@ public class PaqueteriaFacade {
 	private BombaEnvios be;
 	private PastesGo pg;
 	private Cliente cliente;
-	
+	RepositorioReservaciones rr;
+
 	public PaqueteriaFacade(String rfc) {
+		// Crea el repositorio de reservaciones
+		rr = new RepositorioReservaciones();
 		// Crea la nueva orden
-		orden = new Orden();
+		orden = new Orden(rr);
 		// Establece la precedencia del COR
 		ee = new EnvioExpress();
 		be = new BombaEnvios();
 		pg = new PastesGo();
-		
+		// Crear los sucesores
 		ee.setSuccessor(be);
 		be.setSuccessor(pg);
 		// Crea al cliente que realizara el pedido
@@ -92,6 +96,11 @@ public class PaqueteriaFacade {
 	 */
 	public double verCostoFinal() {
 		return orden.getFinalCost();
+	}
+	
+	public void realizarEnvio() {
+		System.out.println("## Los envios estan siendo programados ##");
+		orden.realizarEnvios();
 	}
 	
 }
